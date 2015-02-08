@@ -14,6 +14,7 @@ class Api(object):
         self._user_data = {}
         self.playlist = []
         self.song = None
+        self.user_name = ''
 
     def login(self, account, password):
         if os.path.exists(self.config_path):
@@ -42,6 +43,7 @@ class Api(object):
                 with open(self.config_path, 'w') as f:
                     simplejson.dump(self._user_data, f)
                 print self._user_data
+        self.user_name = self._user_data['user_name']
 
     def get_channels(self):
         result_json = requests.get('http://www.douban.com/j/app/radio/channels')
@@ -86,7 +88,7 @@ class Api(object):
 
 if __name__ == '__main__':
     api = Api()
-    api.login('justpluz@gmail.com', '******')
+    api.login('*', '*')
 
     api.get_channels()
     print api.channels
