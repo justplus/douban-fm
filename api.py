@@ -100,5 +100,5 @@ if __name__ == '__main__':
     api.get_song()
 
     import subprocess
-    command = '/Applications/VLC.app/Contents/MacOS/VLC --quiet --intf dummy ' + api.song['url']
+    command = '/Applications/VLC.app/Contents/MacOS/VLC --intf dummy ' + api.song['url']
     subprocess.call(command, shell=True)

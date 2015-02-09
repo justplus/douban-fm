@@ -76,8 +76,9 @@ class Client(object):
                 self.api.get_playlist()
                 self.api.get_song()
                 self.api.get_song()
-                command = '/Applications/VLC.app/Contents/MacOS/VLC --quiet --intf dummy ' + self.api.song['url']
-                subprocess.call(command, shell=True)
+                command = '/Applications/VLC.app/Contents/MacOS/VLC --intf dummy ' + self.api.song['url'] + ' 2>/dev/null'
+                # 防止VLC阻止父进程
+                subprocess.Popen(command, shell=True, stdin=subprocess.PIPE)
             elif k == keymap.keys['QUIT']:
                 break
 
